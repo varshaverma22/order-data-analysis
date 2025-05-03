@@ -64,7 +64,7 @@ WITH cte AS (
 ,cte2 as (SELECT *, ROW_NUMBER() OVER(PARTITION BY category ORDER BY sales DESC) AS rn FROM cte) 
 select * from cte2 where  rn=1 order by sales desc
 
---5. which sub category had highest growth by profit in 2023 compare to 2022 in percetage
+--5. which sub category had highest growth by profit in 2023 compare to 2022 in percentage
 with cte as (select year(order_date) as year_name,sub_category, sum(sale_price) as sales
 from df_orders
 group by year(order_date),sub_category
